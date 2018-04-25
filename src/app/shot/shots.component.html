@@ -1,0 +1,33 @@
+<div
+  class="wrapper"
+  [style.width.px] = "wWrapper"
+  [style.height.px] = "hWrapper"
+>
+  <div
+    *ngIf="myShot"
+    (id) = myShot.id
+    [id] = myShot.id
+    class="panel"
+    (mouseout)="panelOut()"
+    (mouseover)="panelOver()"
+    [style.width.px] = "wPanel"
+    [style.height.px] = "hPanel"
+  >
+
+    <img
+      [src]="imgSrc"
+      class="avatar"
+      (id) = myShot.id
+      [id] = myShot.id
+    >
+    <h3
+      (id) = myShot.id
+      [id] = myShot.id
+    >
+      {{myShot.title}}
+    </h3>
+    <!--<label>{{myShot.description}}</label>
+    <a href={{myShot.link}}><button>Go</button></a>-->
+  </div>
+</div>
+

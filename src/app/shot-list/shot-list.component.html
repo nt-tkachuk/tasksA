@@ -1,0 +1,12 @@
+
+  <div
+    *ngFor="let shotItem of arrVisi"
+    routerLink="/shots"
+    (mousedown) = "down($event)"
+    (dblclick) = "downDb($event)"
+    [id] = shotItem.id >
+    <!--<a href="" [routerLink] = "['/shots', shotItem.id]">-->
+      <app-shots [shot]="shotItem" [hPanel] = 200 [wPanel] = 300></app-shots>
+    <!--</a>-->
+  </div>
+

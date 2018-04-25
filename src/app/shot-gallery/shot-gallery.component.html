@@ -1,0 +1,8 @@
+<div style="overflow:hidden; ">
+  <div  [style.width.px] = wShot >
+    <app-shot-list></app-shot-list>
+  </div>
+  <div class="bigPanel" [style.height.px] = hBigPanel [style.left.px] = leftBigPanel>
+    <app-shots *ngIf="arr && idVisiShop" [shot] = arr[idVisiShop] [hPanel] = 200 [wPanel] = 300></app-shots>
+  </div>
+</div>
