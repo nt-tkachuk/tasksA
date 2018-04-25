@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 
 export class ShotsComponent implements OnInit {
+  //hzdvfdbgb
   @Input('shot') myShot;
   imgSrc: string = "";
   @Input ('otstup') otstup = 20; // рамка to do перенести
@@ -18,6 +19,7 @@ export class ShotsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    console.trace("aaaaaaaaaa")
     if (this.myShot)
       this.imgSrc = this.myShot.thumbnail;
   }
