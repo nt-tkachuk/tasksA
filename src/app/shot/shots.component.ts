@@ -7,19 +7,18 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 
 export class ShotsComponent implements OnInit {
-  //hzdvfdbgb
   @Input('shot') myShot;
-  imgSrc: string = "";
   @Input ('otstup') otstup = 20; // рамка to do перенести
   _hPanel: number = 100;
   _wPanel: number = 100;
+
+  private imgSrc: string = "";
   wWrapper: number  = this.wPanel + this.otstup;
   hWrapper: number  = this.hPanel + this.otstup;
 
   constructor() {}
 
-  ngOnInit() {
-    console.trace("aaaaaaaaaa")
+  ngOnInit():void {
     if (this.myShot)
       this.imgSrc = this.myShot.thumbnail;
   }
@@ -32,7 +31,6 @@ export class ShotsComponent implements OnInit {
   panelOver (event):void {
     this.imgSrc = this.myShot.avatar;
   }
-
 
   @Input()
   set hPanel(_h:number) {

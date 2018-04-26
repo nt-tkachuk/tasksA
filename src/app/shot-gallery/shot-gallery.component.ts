@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ShotListComponent} from "../shot-list/shot-list.component";
 import {ShotService} from "../services/shot.service";
 import {ActivatedRoute} from "@angular/router";
 
@@ -10,54 +9,47 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ShotGalleryComponent implements OnInit {
   arr = null;
-  routeActiv;
-  idVisiShop;
-  activShot;
+  private routeActiv;
+  private idVisiShop = null;
+  private activIdShot:number = -1;
 
-  otstupBigPanel = 320;
-
-  hBigPanel = window.innerHeight;
-  leftBigPanel = this.otstupBigPanel;
-  wShot =  this.leftBigPanel;
+  private otstupBigPanel:number = 320;
+  private hBigPanel:number = window.innerHeight;
+  private leftBigPanel:number = this.otstupBigPanel;
+  private wShot:number =  this.leftBigPanel;
 
   constructor(private route: ShotService, routeActiv: ActivatedRoute) {
-
     //Подгрузка данных с сервера
     this.route.getConfig().subscribe(val => {
-      //debugger
       this.arr = val;
+      this.getIdShotInArr(this.activIdShot);
+      this.idVisiShop
     });
 
     this.routeActiv = routeActiv.params.subscribe(params=>{
-      //debugger
       var id = params['shotId'];
-      this.someFun(id);
+      this.lookForActivIdArr(id);
     });
-
   }
-
   ngOnInit() {}
 
-  someFun(_id) {
-    if (_id == undefined) {
-      this.leftBigPanel = window.innerWidth;
-    } else {
-      this.leftBigPanel = this.otstupBigPanel;
-    }
+  private lookForActivIdArr(_id) {
+    this.activIdShot = Number(_id);
+    this.leftBigPanel = _id == undefined ? window.innerWidth:this.otstupBigPanel;
     this.wShot = this.leftBigPanel;
-
-    var idS = this.getIdShotInArr(_id);
-    if (idS != null) this.idVisiShop = idS;
+    this.getIdShotInArr(this.activIdShot);
   }
 
   //Поиск ид шота в арр по ид самого шота
-  getIdShotInArr(_idShot) {
-    if (this.arr == undefined) return null;
-    for (var i = 0; i<this.arr; i++){
+  getIdShotInArr(_idShot:number) {
+    if (this.arr == null) return false; //мог еще не подгрузиться
+    for (var i = 0; i<this.arr.length ; i++){
       if (this.arr[i].id == _idShot) {
-        return i;
+        this.idVisiShop = i;
+        return true;
       }
     }
-    return null;
+    return false;
   }
+
 }

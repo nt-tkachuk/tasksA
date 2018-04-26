@@ -6,18 +6,18 @@ import {AppComponent} from "./app.component";
 export  const routes: Routes = [
   {
     path: '',
-/*rcomponent: AppComponent*/
-    redirectTo: '/shots',
-    pathMatch : 'full'
-  },
-  {
-    path: 'shots',
-    component: ShotGalleryComponent//ShotListComponent
-  },
-  {
-    path: 'shots/:shotId',
-    component: ShotGalleryComponent//ShotListComponent
-  }
+component: AppComponent
+/*redirectTo: '/shots',
+pathMatch : 'full'*/
+},
+{
+path: 'shots',
+component: ShotGalleryComponent//ShotListComponent
+},
+{
+path: 'shots/:shotId',
+component: ShotGalleryComponent//ShotListComponent
+}
 ];
 
 
