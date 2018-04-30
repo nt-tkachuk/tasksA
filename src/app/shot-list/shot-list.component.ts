@@ -1,3 +1,7 @@
+/* Компонет в котором инициилизируется, заполняется компоненты шот
+* данные приходять с шотСервис
+* Осуществляется подрузка шотов в завсимости от прокрутки скролл
+* */
 import { Component, OnInit, Input } from '@angular/core';
 import {ShotService} from "../services/shot.service";
 import {ShotsComponent} from "../shot/shots.component";
@@ -11,11 +15,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 export class ShotListComponent implements OnInit {
 
-  _width:number = 100;//window.innerWidth;
-  _height:number = 100;// window.innerHeight;
+  _width:number = 100;
+  _height:number = 100;
 
   arr = null;
-  private arrVisi = [];
+  private arrVisi = []; // массив который будет отображаться. Зависит от скролл
   private visiShot:number = 0; // к-во видимых элементов
   private hPanelShot:number = 100;
   private wPanelShot:number = 100;
@@ -51,7 +55,7 @@ export class ShotListComponent implements OnInit {
     const classContext = this;
     this.getStartArrVisiShot();
 
-    window.onscroll = function (event) {//= this.myScroll;
+    window.onscroll = function (event) {//= this.myScroll ?
       if (classContext.arr == null) return;
       if (document.body.offsetHeight > classContext.arr.length*classContext.hPanelShot) return;
 
@@ -67,24 +71,6 @@ export class ShotListComponent implements OnInit {
           classContext.arrVisi.push(classContext.arr[i]);
       }
     }
-  }
-
-  //Действие скролла для ленивой загрузки
-  myScroll(event) {
-    /*if (this.arr == null) return;
-    if (document.body.offsetHeight > this.arr.length*this.hPanelShot) return;
-
-    var nW =  Math.floor(this._width/this.wPanelShot);
-    var kol =  Math.ceil(document.documentElement.clientHeight/this.hPanelShot);
-
-    var nShot = Math.ceil((window.pageYOffset + document.documentElement.clientHeight)/this.hPanelShot)* nW;
-    this.visiShot = nShot>this.visiShot ? nShot: this.visiShot;
-
-    this.arrVisi.length = 0;
-    for (var i = 0; i<this.visiShot; i++){
-      if (this.arr[i])
-        this.arrVisi.push(this.arr[i]);
-    }*/
   }
 
   down(event){

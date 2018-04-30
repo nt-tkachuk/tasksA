@@ -6,6 +6,6 @@
   left: 100px;
   right: 0px; /* Расстояние от правого края окна браузера */
   top: 0px; /* Расстояние сверху */
-  background: brown; /* Цвет фона */
+  /*background: brown;  Цвет фона */
   border: 1px solid #333; /* Параметры рамки */
 }

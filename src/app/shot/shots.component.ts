@@ -1,3 +1,6 @@
+/* Компонет в котором отображается информация
+ *
+ */
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
@@ -8,9 +11,9 @@ import {Component, Input, OnInit} from '@angular/core';
 
 export class ShotsComponent implements OnInit {
   @Input('shot') myShot;
-  @Input ('otstup') otstup = 20; // рамка to do перенести
-  _hPanel: number = 100;
-  _wPanel: number = 100;
+  @Input ('otstup') otstup = 20; // отступ для рамки
+  _hPanel: number = 100;// высота шота
+  _wPanel: number = 100;// ширина
 
   private imgSrc: string = "";
   wWrapper: number  = this.wPanel + this.otstup;

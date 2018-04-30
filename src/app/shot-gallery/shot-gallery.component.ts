@@ -11,12 +11,12 @@ export class ShotGalleryComponent implements OnInit {
   arr = null;
   private routeActiv;
   private idVisiShop = null;
-  private activIdShot:number = -1;
+  private activIdShot: number = -1;
 
-  private otstupBigPanel:number = 320;
-  private hBigPanel:number = window.innerHeight;
-  private leftBigPanel:number = this.otstupBigPanel;
-  private wShot:number =  this.leftBigPanel;
+  private hBigPanel: number = 300;
+  private otstupBigPanel: number = 320;
+  private leftBigPanel: number = this.otstupBigPanel;
+  private wShot: number =  this.leftBigPanel;
 
   constructor(private route: ShotService, routeActiv: ActivatedRoute) {
     //Подгрузка данных с сервера
@@ -27,7 +27,7 @@ export class ShotGalleryComponent implements OnInit {
     });
 
     this.routeActiv = routeActiv.params.subscribe(params=>{
-      var id = params['shotId'];
+      var id = params['shotId']; // получаем ид активного компонета со строки
       this.lookForActivIdArr(id);
     });
   }
