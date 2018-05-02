@@ -1,3 +1,5 @@
+<app-preloader [activ]= loader [width]= width [height] = height ></app-preloader>
+
 <div style="overflow:hidden; ">
   <div  [style.width.px] = wShot >
     <app-shot-list [width] = wShot></app-shot-list>
@@ -6,3 +8,4 @@
     <app-shots *ngIf="arr && idVisiShop" [shot] = arr[idVisiShop] [hPanel] = hBigPanel [wPanel] = hBigPanel*2></app-shots>
   </div>
 </div>
+

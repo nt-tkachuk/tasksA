@@ -2,6 +2,9 @@
  *
  */
 import {Component, Input, OnInit} from '@angular/core';
+//declare var $:any;
+declare var jquery:any
+declare var $ :any;
 
 @Component({
   selector: 'app-shots',
@@ -16,8 +19,8 @@ export class ShotsComponent implements OnInit {
   _wPanel: number = 100;// ширина
 
   private imgSrc: string = "";
-  wWrapper: number  = this.wPanel + this.otstup;
-  hWrapper: number  = this.hPanel + this.otstup;
+  wWrapper: number  = this._wPanel + this.otstup;
+  hWrapper: number  = this._hPanel + this.otstup;
 
   constructor() {}
 
@@ -34,6 +37,31 @@ export class ShotsComponent implements OnInit {
   panelOver (event):void {
     this.imgSrc = this.myShot.avatar;
   }
+
+  /*saveUrlAsFile(url, fileName) {
+    var link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", fileName);
+    link.click();
+  }
+
+  $('button').on('click', function(e){
+    var isAdmin = confirm("Скачать?");
+    if(isAdmin){
+      this.saveUrlAsFile($(e.target).attr('src'), 'image.jpg');
+    }
+  });
+
+
+   ngAfterViewInit(){
+     $('button').click(function(e){
+       console.trace("aaaaaaaaaaaaaaaaaaaaa")
+     $var isAdmin = confirm("Скачать?");
+     if(isAdmin){
+       this.saveUrlAsFile($(e.target).attr('src'), 'image.jpg');
+     }
+   });
+  }*/
 
   @Input()
   set hPanel(_h:number) {

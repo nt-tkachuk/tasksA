@@ -32,10 +32,16 @@ export class ShotListComponent implements OnInit {
     this.otstupShot = shotComp.otstup;
 
     //Подгрузка данных с сервера
-    this.shotsServ.getConfig().subscribe(val => {
+    this.shotsServ.getConfig()/*.subscribe(val => {
       this.arr = val;
       this.getStartArrVisiShot();
-    });
+    });*/
+    this.shotsServ.arrayShot
+      .subscribe(res =>{
+        if (res == null) return;
+        this.arr = res;//['shots'];
+        this.getStartArrVisiShot();
+      });
   }
 
   //Определить какое к-во шотов влазит на экран при старте
@@ -74,8 +80,7 @@ export class ShotListComponent implements OnInit {
   }
 
   down(event){
-    console.trace("id",  event.target.id);
-    this.router.navigate(['/shots', event.target.id]);
+     this.router.navigate(['/shots', event.target.id]);
   }
 
   downDb(event){
@@ -84,7 +89,6 @@ export class ShotListComponent implements OnInit {
 
   @Input()
   set width(_width:number) {
-    console.trace("widthwidthwidth");
     this._width = _width;
     this.getStartArrVisiShot();
   }

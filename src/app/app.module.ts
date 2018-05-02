@@ -4,11 +4,14 @@ import { AppComponent } from './app.component';
 import { ShotsComponent } from './shot/shots.component';
 import { ShotService } from './services/shot.service';
 
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpInterceptor} from '@angular/common/http';
 import {RouterModule} from "@angular/router";
 import {routes} from "./routes.rb";
 import { ShotListComponent } from './shot-list/shot-list.component';
 import { ShotGalleryComponent } from './shot-gallery/shot-gallery.component';
+import { PreloaderComponent } from './preloader/preloader.component';
+import {shotInterceptor} from "./interceptors/interceptor";
+
 
 @NgModule({
   declarations: [
@@ -16,16 +19,20 @@ import { ShotGalleryComponent } from './shot-gallery/shot-gallery.component';
     ShotsComponent,
     ShotListComponent,
     ShotGalleryComponent,
+    PreloaderComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS , useClass: shotInterceptor, multi: true},
     ShotService,
     ShotsComponent,
-    ShotGalleryComponent
+    ShotGalleryComponent,
+
   ],
   bootstrap: [AppComponent],
 })
