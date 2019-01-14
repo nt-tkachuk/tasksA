@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ShotService} from "../services/shot.service";
 import {ActivatedRoute} from "@angular/router";
-import {Filter} from '../filters/filter';
+// import {Filter} from '../filters/filter';
 
 @Component({
   selector: 'app-shot-gallery',
@@ -24,14 +24,6 @@ export class ShotGalleryComponent implements OnInit {
   loader:boolean = false;
 
   constructor(private route: ShotService, routeActiv: ActivatedRoute) {
-    //Подгрузка данных с сервера
-    /*this.route.getConfig()
-      .subscribe(val => {
-      debugger
-      this.arr = val['shots'];
-      this.getIdShotInArr(this.activIdShot);
-      this.idVisiShop
-    });*/
 
     this.loader = true;
     this.route.getConfig();
@@ -46,16 +38,20 @@ export class ShotGalleryComponent implements OnInit {
 
     this.route.loader
       .subscribe(res => {
+        console.trace('res', res)
         if (res != null) {
           this.loader = res;
         }
       })
 
+
+    // подписались на изменения параметров активного роутера
     this.routeActiv = routeActiv.params.subscribe(params=>{
       var id = params['shotId']; // получаем ид активного компонета со строки
       this.lookForActivIdArr(id);
     });
   }
+
   ngOnInit() {}
 
   private lookForActivIdArr(_id) {
@@ -67,14 +63,13 @@ export class ShotGalleryComponent implements OnInit {
 
   //Поиск ид шота в арр по ид самого шота
   getIdShotInArr(_idShot:number) {
-    if (this.arr == null) return false; //мог еще не подгрузиться
+    if (this.arr == null) return false; // мог еще не подгрузиться
     for (var i = 0; i<this.arr.length ; i++){
-      if (this.arr[i].id == _idShot) {
+      if (this.arr[i].id === _idShot) {
         this.idVisiShop = i;
         return true;
       }
     }
     return false;
   }
-
 }

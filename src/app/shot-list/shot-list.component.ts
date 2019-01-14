@@ -32,10 +32,8 @@ export class ShotListComponent implements OnInit {
     this.otstupShot = shotComp.otstup;
 
     //Подгрузка данных с сервера
-    this.shotsServ.getConfig()/*.subscribe(val => {
-      this.arr = val;
-      this.getStartArrVisiShot();
-    });*/
+    this.shotsServ.getConfig();
+
     this.shotsServ.arrayShot
       .subscribe(res =>{
         if (res == null) return;

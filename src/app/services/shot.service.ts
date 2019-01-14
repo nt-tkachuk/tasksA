@@ -16,15 +16,6 @@ export class ShotService {
   constructor(private http: HttpClient) {
     this.arrayShot  = new BehaviorSubject(null);
     this.loader  = new BehaviorSubject(null);
-
-    /*http.get('http://api.mobile.design/api/shots?page=1&per_page=24', {observe: 'response'})
-      .subscribe((response) => {
-        this.posts = response;
-        // this.arrayShot = response['shots'];
-        //console.log(this.array);
-        console.log(response.status);
-        console.log(response.headers);
-      })*/
   }
 
   getConfig() {
@@ -37,8 +28,6 @@ export class ShotService {
         if (response.status) { // Ответ сервера. Запрос обработан успешно
           this.loader.next(false);
         }
-        //console.log(response.status);
-        //console.log(response.headers);
       });
   }
 

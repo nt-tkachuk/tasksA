@@ -24,13 +24,11 @@
       (id) = myShot.id
       [id] = myShot.id
     >
-      {{myShot.title}}
+      {{myShot.title | pipeTest}}
     </h3>
     <a href = {{myShot.avatar}} download="w3logo">
-      <button type='text' value='Скачать' alt="W3Schools" >Скачать</button>
+      <button type='text' value='Скачать'>Скачать</button>
     </a>
-    <!--<label>{{myShot.description}}</label>
-    <a href={{myShot.link}}><button>Go</button></a>-->
   </div>
 </div>
 

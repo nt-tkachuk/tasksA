@@ -11,6 +11,7 @@ import { ShotListComponent } from './shot-list/shot-list.component';
 import { ShotGalleryComponent } from './shot-gallery/shot-gallery.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import {shotInterceptor} from "./interceptors/interceptor";
+import {PipeTest} from "./pipes/pipeTest";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {shotInterceptor} from "./interceptors/interceptor";
     ShotListComponent,
     ShotGalleryComponent,
     PreloaderComponent,
+    PipeTest
   ],
   imports: [
     BrowserModule,

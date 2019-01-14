@@ -13,10 +13,13 @@ declare var $ :any;
 })
 
 export class ShotsComponent implements OnInit {
-  @Input('shot') myShot;
+  // @Input('shot') myShot;
   @Input ('otstup') otstup = 20; // отступ для рамки
+
+  _myShot = null;
   _hPanel: number = 100;// высота шота
   _wPanel: number = 100;// ширина
+
 
   private imgSrc: string = "";
   wWrapper: number  = this._wPanel + this.otstup;
@@ -25,43 +28,26 @@ export class ShotsComponent implements OnInit {
   constructor() {}
 
   ngOnInit():void {
-    if (this.myShot)
-      this.imgSrc = this.myShot.thumbnail;
+    if (this._myShot) {
+      this.imgSrc = this._myShot.thumbnail;
+    }
   }
 
   panelOut (event):void{
-    this.imgSrc = this.myShot.thumbnail;
+    this.imgSrc = this._myShot.thumbnail;
     //event.target.src = shot.sabmail; //если сделать через цсс, то будет 2 картинки и они будут подгружены сразу
   }
 
   panelOver (event):void {
-    this.imgSrc = this.myShot.avatar;
+    this.imgSrc = this._myShot.avatar;
   }
 
-  /*saveUrlAsFile(url, fileName) {
-    var link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", fileName);
-    link.click();
+  @Input()
+  set myShot(_v:object) {
+    this._myShot = _v;
+    this.imgSrc = this._myShot.thumbnail;
   }
-
-  $('button').on('click', function(e){
-    var isAdmin = confirm("Скачать?");
-    if(isAdmin){
-      this.saveUrlAsFile($(e.target).attr('src'), 'image.jpg');
-    }
-  });
-
-
-   ngAfterViewInit(){
-     $('button').click(function(e){
-       console.trace("aaaaaaaaaaaaaaaaaaaaa")
-     $var isAdmin = confirm("Скачать?");
-     if(isAdmin){
-       this.saveUrlAsFile($(e.target).attr('src'), 'image.jpg');
-     }
-   });
-  }*/
+  get myShot() { return this._myShot; }
 
   @Input()
   set hPanel(_h:number) {

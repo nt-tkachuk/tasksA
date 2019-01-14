@@ -7,15 +7,15 @@ export  const routes: Routes = [
     /*component: AppComponent*/
     redirectTo: '/shots',
     pathMatch : 'full'
-},
-{
-path: 'shots',
-component: ShotGalleryComponent//ShotListComponent
-},
-{
-path: 'shots/:shotId',
-component: ShotGalleryComponent//ShotListComponent
-}
+  },
+  {
+    path: 'shots',
+    component: ShotGalleryComponent//ShotListComponent
+  },
+  {
+    path: 'shots/:shotId',
+    component: ShotGalleryComponent//ShotListComponent
+  }
 ];
 
 
